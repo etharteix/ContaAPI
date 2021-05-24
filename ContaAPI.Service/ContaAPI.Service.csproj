@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Flunt" Version="1.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ContaAPI.Domain\ContaAPI.Domain.csproj" />
+    <ProjectReference Include="..\ContaAPI.Infra.Data\ContaAPI.Infra.Data.csproj" />
+    <ProjectReference Include="..\ContaAPI.Infra.Shared\ContaAPI.Infra.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
