@@ -49,5 +49,8 @@ namespace ContaAPI.Domain.ValueTypes
             contract.AddNotification(nameof(Password), message);
             return false;
         }
+
+        public bool IsDefined() =>
+            _value != null;
     }
 }

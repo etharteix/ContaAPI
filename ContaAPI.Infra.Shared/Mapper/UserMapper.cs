@@ -11,8 +11,11 @@ namespace ContaAPI.Infra.Shared.Mapper
         public static UserEntity ConvertToUserEntity(this CreateUserModel userModel) =>
             new UserEntity(Guid.Empty, userModel.Name, userModel.Email, userModel.Password);
 
-        public static UserEntity ConvertToUserEntity(this UpdateUserModel userModel) =>
-            new UserEntity(userModel.Id, userModel.Name, userModel.Email);
+        public static UserEntity ConvertToUserEntity(this UpdateUserModel userModel, Guid id) =>
+            new UserEntity(id, userModel.Name, userModel.Email);
+
+        public static UserEntity ConvertToUserEntity(this UpdateUserModel userModel, Guid id, string Password) =>
+            new UserEntity(id, userModel.Name, userModel.Email, userModel.Password);
 
         public static IEnumerable<UserModel> ConvertToUsers(this IList<UserEntity> users) =>
             new List<UserModel>(users.Select(s => new UserModel(s.Id, s.Name.ToString(), s.Email.ToString())));

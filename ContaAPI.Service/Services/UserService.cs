@@ -57,11 +57,11 @@ namespace ContaAPI.Service.Services
 
         public UserModel Insert(CreateUserModel userModel)
         {
-            var userExist = _repositoryUser.GetByEmail(userModel.Email) != null;
+            var emailExist = _repositoryUser.GetByEmail(userModel.Email) != null;
 
-            if (userExist)
+            if (emailExist)
             {
-                _notificationContext.AddNotifications(new Contract().IsFalse(userExist, nameof(userModel.Email), "Email already being used."));
+                _notificationContext.AddNotifications(new Contract().IsFalse(emailExist, nameof(userModel.Email), "Email already being used."));
                 return default;
             }
 
@@ -81,23 +81,41 @@ namespace ContaAPI.Service.Services
 
         public UserModel Update(Guid id, UpdateUserModel userModel)
         {
-            var userExists = _repositoryUser.GetById(id) != null;
+            var user = _repositoryUser.GetById(id);
 
-            if (id != userModel.Id || !userExists)
+            if (user == null)
             {
-                _notificationContext.AddNotifications(new Contract().AreEquals(id, userModel.Id, nameof(id), "User not found."));
+                _notificationContext.AddNotifications(new Contract().IsNotNull(user, nameof(user), "User not found."));
                 return default;
             }
 
-            var user = userModel.ConvertToUserEntity();
+            var emailExist = _repositoryUser.GetByEmail(userModel.Email) != null;
 
-            _notificationContext.AddNotifications(user.Notifications);
+            if (emailExist)
+            {
+                _notificationContext.AddNotifications(new Contract().IsFalse(emailExist, nameof(userModel.Email), "Email already being used."));
+                return default;
+            }
+
+            if (userModel.Name == "")
+                userModel.Name = user.Name.ToString();
+
+            if (userModel.Email == "")
+                userModel.Email = user.Email.ToString();
+
+            UserEntity updatedUser;
+            if (userModel.Password == "")
+                updatedUser = userModel.ConvertToUserEntity(id);
+            else
+                updatedUser = userModel.ConvertToUserEntity(id, userModel.Password);
+
+            _notificationContext.AddNotifications(updatedUser.Notifications);
 
             if (_notificationContext.Invalid)
                 return default;
 
-            _repositoryUser.Save(user);
-            return user.ConvertToUser();
+            _repositoryUser.Save(updatedUser);
+            return updatedUser.ConvertToUser();
         }
 
         public UserModel Login(LoginUserModel userModel)

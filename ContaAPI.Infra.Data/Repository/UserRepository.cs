@@ -22,7 +22,12 @@ namespace ContaAPI.Infra.Data.Repository
             if (obj.Id == Guid.Empty)
                 base.Insert(obj);
             else
-                base.Update(obj, _mySqlContext.Entry(obj).Property(prop => prop.Password));
+            {
+                if (obj.Password.IsDefined())
+                    base.Update(obj);
+                else
+                    base.Update(obj, _mySqlContext.Entry(obj).Property(prop => prop.Password));
+            }
         }
 
         public UserEntity GetById(Guid id) =>
