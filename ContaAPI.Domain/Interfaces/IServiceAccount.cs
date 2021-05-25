@@ -20,6 +20,8 @@ namespace ContaAPI.Domain.Interfaces
 
         AccountModel RecoverById(Guid id);
 
+        AccountModel RecoverByUserId(Guid id);
+
         IEnumerable<AccountModel> RecoverAll();
     }
 }

@@ -4,11 +4,11 @@ namespace ContaAPI.Domain.Models
 {
     public class UpdateAccountModel
     {
-        public UpdateAccountModel(decimal value)
+        public UpdateAccountModel(decimal? value)
         {
             Value = value;
         }
 
-        public decimal Value { get; set; }
+        public decimal? Value { get; set; }
     }
 }

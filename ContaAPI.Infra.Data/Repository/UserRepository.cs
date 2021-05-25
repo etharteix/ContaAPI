@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ContaAPI.Domain.Entities;
 using ContaAPI.Domain.Interfaces;
 using ContaAPI.Infra.Data.Context;
+using System.Linq;
 
 namespace ContaAPI.Infra.Data.Repository
 {
@@ -29,6 +30,17 @@ namespace ContaAPI.Infra.Data.Repository
 
         public IList<UserEntity> GetAll() =>
             base.Select();
+
+        public UserEntity GetByEmail(string email)
+        {
+            var users = GetAll();
+
+            foreach (var user in users)
+                if (user.Email.ToString().Equals(email))
+                    return user;
+
+            return null;
+        }
 
     }
 }

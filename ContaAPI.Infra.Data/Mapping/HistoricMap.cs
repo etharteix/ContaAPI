@@ -17,7 +17,7 @@ namespace ContaAPI.Infra.Data.Mapping
                 .HasConversion(prop => prop.ToString(), prop => prop)
                 .IsRequired()
                 .HasColumnName("MovementType")
-                .HasColumnType("varchar(8)");
+                .HasColumnType("varchar(20)");
 
             builder.Property(prop => prop.MovementDate)
                 .IsRequired()

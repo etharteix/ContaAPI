@@ -15,5 +15,7 @@ namespace ContaAPI.Domain.Interfaces
         UserModel RecoverById(Guid id);
 
         IEnumerable<UserModel> RecoverAll();
+
+        UserModel Login(LoginUserModel userModel);
     }
 }

@@ -52,7 +52,7 @@ namespace ContaAPI.Infra.Data.Migrations
                     b.Property<string>("MovementType")
                         .IsRequired()
                         .HasColumnName("MovementType")
-                        .HasColumnType("varchar(8)");
+                        .HasColumnType("varchar(20)");
 
                     b.Property<decimal>("MovementValue")
                         .HasColumnName("MovementValue")

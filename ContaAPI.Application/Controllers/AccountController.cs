@@ -134,12 +134,12 @@ namespace ContaAPI.Application.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public IActionResult Recover([FromRoute] Guid id)
+        [HttpGet("{userId}")]
+        public IActionResult Recover([FromRoute] Guid userId)
         {
             try
             {
-                var account = _serviceAccount.RecoverById(id);
+                var account = _serviceAccount.RecoverByUserId(userId);
                 return Ok(account);
             }
             catch (Exception ex)

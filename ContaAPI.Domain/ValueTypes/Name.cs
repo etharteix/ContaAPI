@@ -32,7 +32,7 @@ namespace ContaAPI.Domain.ValueTypes
             if (_value.Length < 3)
                 return AddNotification("The name must be at least 3 characters in length.");
 
-            if (!Regex.IsMatch(_value, (@"^[A-Za-z][A-Za-z0-9 ]+$")))
+            if (!Regex.IsMatch(_value, (@"^[A-Za-z][A-Za-z0-9\u00C0-\u00FF ]+$")))
                 return AddNotification("The name must begin with a letter and have no special character.");
 
             if (_value.EndsWith(" "))

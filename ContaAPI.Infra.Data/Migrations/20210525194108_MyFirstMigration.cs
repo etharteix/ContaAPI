@@ -25,7 +25,7 @@ namespace ContaAPI.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    MovementType = table.Column<string>(type: "varchar(8)", nullable: false),
+                    MovementType = table.Column<string>(type: "varchar(20)", nullable: false),
                     MovementDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     MovementValue = table.Column<decimal>(type: "decimal(20,2)", nullable: false),
                     UserId = table.Column<Guid>(nullable: false)

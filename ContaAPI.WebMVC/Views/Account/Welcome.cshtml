@@ -1,0 +1,75 @@
+﻿@model ContaAPI.WebMVC.Models.UserBalanceModel
+@{
+  ViewBag.Title = "Welcome";
+}
+
+<div style="width: 50%; float: left;">
+  <div>
+    <h2>Bem vindo @Model.Name</h2>
+
+    Saldo: @Model.Balance
+
+
+  </div>
+  <div style="color:red;">@Html.ValidationSummary()</div>
+  <div class="row">
+    <!--Show details are saved successfully message-->
+    <div class="col-lg-12">@ViewBag.Message</div>
+  </div>
+  <br />
+
+  @using (Html.BeginForm("Deposit", "Account"))
+  {
+    <div class="row">
+      <div class="row">
+        <div>Valor:</div>
+        <div>@Html.TextBoxFor(a => a.Movement, new { @class = "form-control" })</div>
+      </div><br />
+      <div class="row">
+        <input type="submit" value="Depositar" class="btn btn-primary" />
+      </div>
+    </div>
+    <br />
+  }
+
+  @using (Html.BeginForm("Withdraw", "Account"))
+  {
+    <div class="row">
+      <div class="row">
+        <div>Valor:</div>
+        <div>@Html.TextBoxFor(a => a.Movement, new { @class = "form-control" })</div>
+      </div><br />
+      <div class="row">
+        <input type="submit" value="Retirar" class="btn btn-primary" />
+      </div>
+    </div>
+    <br />
+  }
+
+  @using (Html.BeginForm("Payment", "Account"))
+  {
+    <div class="row">
+      <div class="row">
+        <div>Valor:</div>
+        <div>@Html.TextBoxFor(a => a.Movement, new { @class = "form-control" })</div>
+      </div><br />
+      <div class="row">
+        <div>Pix: </div>
+        <div>@Html.TextBoxFor(a => a.PixCode, new { @class = "form-control" })</div>
+      </div><br />
+      <div class="row">
+        <input type="submit" value="Pagar" class="btn btn-primary" />
+      </div>
+    </div>
+    <br />
+  }
+  <div class="row">
+    <button onclick="location.href='@Url.Action("Monetize", "Account")'" class="btn btn-primary">Passar 1 dia</button>
+    <button onclick="location.href='@Url.Action("Logout", "Account")'" class="btn btn-primary">Logout</button>
+  </div>
+</div>
+
+  <div style="float: right;">
+    <h1>Histórico</h1>
+    <span style="white-space: pre-line">@Model.Historic</span>
+  </div>

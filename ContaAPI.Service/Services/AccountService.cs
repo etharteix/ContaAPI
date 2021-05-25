@@ -42,6 +42,19 @@ namespace ContaAPI.Service.Services
             return account.ConvertToAccount();
         }
 
+        public AccountModel RecoverByUserId(Guid userId)
+        {
+            var account = _repositoryAccount.GetByUserId(userId);
+
+            if (account == null)
+            {
+                _notificationContext.AddNotifications(new Contract().IsNotNull(account, nameof(account), "Account not found."));
+                return default;
+            }
+
+            return account.ConvertToAccount();
+        }
+
         public void Delete(Guid id)
         {
             var account = _repositoryAccount.GetById(id);
@@ -73,7 +86,7 @@ namespace ContaAPI.Service.Services
                 return default;
 
             _repositoryAccount.Save(account);
-            UpdateHistoric("deposit", movement, userId);
+            UpdateHistoric("Depósito", movement, userId);
 
             return account.ConvertToAccount();
         }
@@ -86,7 +99,7 @@ namespace ContaAPI.Service.Services
                 return default;
 
             _repositoryAccount.Save(account);
-            UpdateHistoric("withdraw", movement, userId);
+            UpdateHistoric("Retirada", movement, userId);
 
             return account.ConvertToAccount();
         }
@@ -98,6 +111,13 @@ namespace ContaAPI.Service.Services
             if (account == null)
                 return default;
 
+            var isNullPix = paymentAccountModel.PixCode == null;
+            if (isNullPix)
+            {
+                _notificationContext.AddNotifications(new Contract().IsFalse(isNullPix, nameof(paymentAccountModel.PixCode), "Please inform a pix code."));
+                return default;
+            }
+
             var isValidPix = IsValidPix(paymentAccountModel.PixCode);
             if (!isValidPix)
             {
@@ -106,7 +126,7 @@ namespace ContaAPI.Service.Services
             }
 
             _repositoryAccount.Save(account);
-            UpdateHistoric("payment", paymentAccountModel.Value, userId);
+            UpdateHistoric("Pagamento", paymentAccountModel.Value, userId);
 
             return account.ConvertToAccount();
         }
@@ -123,10 +143,10 @@ namespace ContaAPI.Service.Services
                 var balance = account.Balance.ToDecimal();
                 if (balance > 0)
                 {
-                    addBalance = decimal.Round(decimal.Multiply(account.Balance.ToDecimal(), cdi), 2);
+                    addBalance = decimal.Round(decimal.Multiply(balance, cdi), 2);
                     account.Balance = balance + addBalance;
                     _repositoryAccount.Save(account);
-                    UpdateHistoric("monetize", addBalance, account.UserId);
+                    UpdateHistoric("Rendimento", addBalance, account.UserId);
                 }
             }  
         }
@@ -140,6 +160,13 @@ namespace ContaAPI.Service.Services
                 return null;
             }
 
+            var isNullValue = accountModel.Value == null;
+            if (isNullValue)
+            {
+                _notificationContext.AddNotifications(new Contract().IsFalse(isNullValue, nameof(accountModel.Value), "Please inform a value;"));
+                return null;
+            }
+
             var isInvalidValue = accountModel.Value <= 0;
             if (isInvalidValue)
             {
@@ -147,7 +174,7 @@ namespace ContaAPI.Service.Services
                 return null;
             }
 
-            decimal totalBalance;
+            decimal? totalBalance;
             if (isDeposit)
                 totalBalance = account.Balance.ToDecimal() + accountModel.Value;
             else
@@ -187,9 +214,9 @@ namespace ContaAPI.Service.Services
             return isValid;
         }
 
-        private void UpdateHistoric(string movementType, decimal movementValue, Guid userId)
+        private void UpdateHistoric(string movementType, decimal? movementValue, Guid userId)
         {
-            var historicModel = new CreateHistoricModel(movementType, movementValue, userId);
+            var historicModel = new CreateHistoricModel(movementType, Convert.ToDecimal(movementValue), userId);
             var historic = historicModel.ConvertToHistoricEntity();
             _repositoryHistoric.Save(historic);
         }

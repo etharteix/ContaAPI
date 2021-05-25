@@ -13,6 +13,8 @@ namespace ContaAPI.Domain.Interfaces
         UserEntity GetById(Guid id);
 
         IList<UserEntity> GetAll();
+
+        UserEntity GetByEmail(string email);
     }
 }
 

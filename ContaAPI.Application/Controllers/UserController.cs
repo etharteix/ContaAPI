@@ -22,7 +22,8 @@ namespace ContaAPI.Application.Controllers
             {
                 var user = _serviceUser.Insert(userModel);
 
-                return Created($"/api/users/{user?.Id}", user?.Id);
+                //return Created($"/api/users/{user?.Id}", user?.Id);
+                return Created($"/api/users/{user?.Id}", user);
             }
             catch (Exception ex)
             {
@@ -80,6 +81,20 @@ namespace ContaAPI.Application.Controllers
             try
             {
                 var user = _serviceUser.RecoverById(id);
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] LoginUserModel userModel)
+        {
+            try
+            {
+                var user = _serviceUser.Login(userModel);
                 return Ok(user);
             }
             catch (Exception ex)

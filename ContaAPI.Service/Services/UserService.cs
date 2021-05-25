@@ -7,6 +7,7 @@ using ContaAPI.Infra.Shared.Contexts;
 using ContaAPI.Infra.Shared.Mapper;
 using System;
 using System.Threading.Tasks;
+using System.Text;
 
 namespace ContaAPI.Service.Services
 {
@@ -56,6 +57,14 @@ namespace ContaAPI.Service.Services
 
         public UserModel Insert(CreateUserModel userModel)
         {
+            var userExist = _repositoryUser.GetByEmail(userModel.Email) != null;
+
+            if (userExist)
+            {
+                _notificationContext.AddNotifications(new Contract().IsFalse(userExist, nameof(userModel.Email), "Email already being used."));
+                return default;
+            }
+
             var user = userModel.ConvertToUserEntity();
             _notificationContext.AddNotifications(user.Notifications);
 
@@ -88,6 +97,27 @@ namespace ContaAPI.Service.Services
                 return default;
 
             _repositoryUser.Save(user);
+            return user.ConvertToUser();
+        }
+
+        public UserModel Login(LoginUserModel userModel)
+        {
+            var user = _repositoryUser.GetByEmail(userModel.Email);
+
+            if (user == null)
+            {
+                _notificationContext.AddNotifications(new Contract().IsNotNull(user, nameof(user), "User not found."));
+                return default;
+            }
+
+            var correctPwd = Convert.ToBase64String(new UTF8Encoding().GetBytes(userModel.Password)) == user.Password.ToString();
+
+            if (!correctPwd)
+            {
+                _notificationContext.AddNotifications(new Contract().IsTrue(correctPwd, nameof(userModel.Password), "Wrong password."));
+                return default;
+            }
+
             return user.ConvertToUser();
         }
 

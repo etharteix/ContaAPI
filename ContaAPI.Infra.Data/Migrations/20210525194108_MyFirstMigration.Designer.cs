@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContaAPI.Infra.Data.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    [Migration("20210524075251_MyFirstMigration")]
+    [Migration("20210525194108_MyFirstMigration")]
     partial class MyFirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,7 +54,7 @@ namespace ContaAPI.Infra.Data.Migrations
                     b.Property<string>("MovementType")
                         .IsRequired()
                         .HasColumnName("MovementType")
-                        .HasColumnType("varchar(8)");
+                        .HasColumnType("varchar(20)");
 
                     b.Property<decimal>("MovementValue")
                         .HasColumnName("MovementValue")
