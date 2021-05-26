@@ -96,8 +96,26 @@ Retorna uma lista de JSON com o histórico de operações da conta corrente do u
 
 ### Conta Corrente - Validações
 
-O valor informado em qualquer operação deve ser positivo, maior que zero e ter no máximo 2 casas decimais.
+O valor informado em qualquer operação deve ser positivo, maior que zero e ter no máximo 2 casas decimais. O código PIX, por sua vez, para ser válido deve estar em algum dos seguintes formatos:
+
+- Email: validado assim como nos serviçoes de usuário;
+- CPF: 11 números ou xxx.xxx.xxx-xx;
+- Telefone: 11 números ou (xx)xxxxx-xxxx;
+- Chave aleatória: 11 caracteres, podendo ser letras, números ou hífen.
 
 ## Aplicativo Web MVC
 
-O aplicativo web MVC desenvolvido tem as funções de **login**, **logout**, **registro**, **saldo**, **depósito**, **retirada**, **pagamento**, **rentabilização** e **histórico**. O botão **Passar 1 dia** simula um dia de rentabilização com 100% do CDI.
+O aplicativo web MVC desenvolvido tem as funções de **login**, **logout**, **registro**, **saldo**, **depósito**, **retirada**, **pagamento**, **rentabilização** e **histórico** com sessão persistente e mensagens de erro. O botão **Passar 1 dia** simula um dia de rentabilização com 100% do CDI.
+
+## Teste
+
+O projeto ContaAPI.IntegrationTests testa todas as operações válidas e a integração com o database.
+
+## Observações
+
+Ideias do que pode ser implementado ainda no projeto:
+
+- Sistema de transferência entre contas correntes;
+- Funções de registro e deleção de usuário no aplicativo web MVC;
+- Migration automática;
+- Sistema de autenticação por JWT.
