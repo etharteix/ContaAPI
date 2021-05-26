@@ -77,7 +77,7 @@ Subtrai do saldo da conta corrente do usuário de id {userId} o valor informado,
 
 4. **Rentabilização** - [POST] /api/accounts/monetize
 
-Adiciona ao saldo de todas as contas correntes o valor referente a 100% do CDI diário, arredondando o resultado para 2 casas decimais. Este valor foi calculado tomando como base o rendimento do CDI no ano de 2020 e, fazendo-se uma média diário chegou-se no valor de 0,00756%.
+Adiciona ao saldo de todas as contas correntes o valor referente a 100% do CDI diário, arredondando o resultado para 2 casas decimais. Este valor foi calculado tomando como base o rendimento do CDI no ano de 2020 e, fazendo-se uma média diária chegou-se no valor de 0,00756%.
 
 5. **Retorno das contas** - [GET] /api/accounts
 
