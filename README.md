@@ -13,7 +13,8 @@ Para testar o projeto no Visual Studio basta seguir os seguintes passos:
 
 - Definir como **Multiple Startup Projects** os projetos ContaAPI.Application e ContaAPI.WebMVC nas propriedades da solution;
 - Definir os dados do servidor e DB a ser utilizado no arquivo **appsettings.json** dentro do projeto ContaAPI.Application;
-- No **Package Manager Console** definir como **Default Project** o projeto ContaAPI.Infra.Data e executar o comando **Update-Database**.
+- No **Package Manager Console** definir como **Default Project** o projeto ContaAPI.Infra.Data e executar o comando **Update-Database**;
+- Clicar em **Start** (F5).
 
 Ao executar estes passos, duas janelas irão se abrir: uma do aplicativo web MVC e a outra do swagger.
 
