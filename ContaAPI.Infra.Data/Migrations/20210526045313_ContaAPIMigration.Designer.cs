@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContaAPI.Infra.Data.Migrations
 {
     [DbContext(typeof(MySqlContext))]
-    [Migration("20210525194108_MyFirstMigration")]
-    partial class MyFirstMigration
+    [Migration("20210526045313_ContaAPIMigration")]
+    partial class ContaAPIMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

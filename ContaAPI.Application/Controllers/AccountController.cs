@@ -15,36 +15,6 @@ namespace ContaAPI.Application.Controllers
             _serviceAccount = serviceAccount;
 
 
-        //[HttpPost]
-        //public IActionResult Register([FromBody] CreateAccountModel accountModel)
-        //{
-        //    try
-        //    {
-        //        var account = _serviceAccount.Insert(accountModel);
-
-        //        return Created($"/api/accounts/{account?.Id}", account?.Id);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex);
-        //    }
-        //}
-
-        //[HttpPut("{id}")]
-        //public IActionResult Update([FromRoute] Guid id, [FromBody] UpdateAccountModel accountModel)
-        //{
-        //    try
-        //    {
-        //        var user = _serviceAccount.Update(id, accountModel);
-
-        //        return NoContent();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex);
-        //    }
-        //}
-
         [HttpPut("deposit/{userId}")]
         public IActionResult Deposit([FromRoute] Guid userId, [FromBody] UpdateAccountModel accountModel)
         {
@@ -104,21 +74,6 @@ namespace ContaAPI.Application.Controllers
                 return BadRequest(ex);
             }
         }
-
-        //[HttpDelete("{id}")]
-        //public IActionResult Remove([FromRoute] Guid id)
-        //{
-        //    try
-        //    {
-        //        _serviceAccount.Delete(id);
-
-        //        return NoContent();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex);
-        //    }
-        //}
 
         [HttpGet]
         public IActionResult RecoverAll()

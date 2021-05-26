@@ -96,7 +96,7 @@ Retorna uma lista de JSON com o histórico de operações da conta corrente do u
 
 ### Conta Corrente - Validações
 
-O valor informado em qualquer operação deve ser positivo, maior que zero e ter no máximo 2 casas decimais. O código PIX, por sua vez, para ser válido deve estar em algum dos seguintes formatos:
+O valor informado em qualquer operação deve ser positivo, maior que zero e ter no máximo 2 casas decimais. As operações de retirada e pagamento não podem ter um valor que excede o valor do saldo da conta. O código PIX, por sua vez, para ser válido deve estar em algum dos seguintes formatos:
 
 - Email: validado assim como nos serviçoes de usuário;
 - CPF: 11 números ou xxx.xxx.xxx-xx;
@@ -105,11 +105,11 @@ O valor informado em qualquer operação deve ser positivo, maior que zero e ter
 
 ## Aplicativo Web MVC
 
-O aplicativo web MVC desenvolvido tem as funções de **login**, **logout**, **registro**, **saldo**, **depósito**, **retirada**, **pagamento**, **rentabilização** e **histórico** com sessão persistente e mensagens de erro. O botão **Passar 1 dia** simula um dia de rentabilização com 100% do CDI.
+O aplicativo web MVC desenvolvido tem as funções de **login**, **logout**, **registro**, **saldo**, **depósito**, **retirada**, **pagamento**, **rentabilização** e **histórico** com sessão persistente e mensagens de erro das validações da API REST. O botão **Passar 1 dia** simula um dia de rentabilização com 100% do CDI. Os campos de **valor** das operações financeiras na interface visual aceitam ou **vírgula** ou **ponto** para as casas decimais, dependendo da língua utilizada no sistema.
 
 ## Teste
 
-O projeto ContaAPI.IntegrationTests testa todas as operações válidas e a integração com o database.
+O projeto ContaAPI.IntegrationTests testa todas as operações válidas e a integração com o database. Para rodar deve-se definir os dados do servidor e DB a ser utilizado no arquivo **appsettings.json** deste projeto.
 
 ## Observações
 

@@ -22,7 +22,6 @@ namespace ContaAPI.Application.Controllers
             {
                 var user = _serviceUser.Insert(userModel);
 
-                //return Created($"/api/users/{user?.Id}", user?.Id);
                 return Created($"/api/users/{user?.Id}", user);
             }
             catch (Exception ex)

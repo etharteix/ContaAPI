@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ContaAPI.Infra.Data.Migrations
 {
-    public partial class MyFirstMigration : Migration
+    public partial class ContaAPIMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

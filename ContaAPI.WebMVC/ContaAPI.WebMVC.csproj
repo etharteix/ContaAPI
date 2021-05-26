@@ -152,16 +152,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\LoginRegisterMVCEF.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>LoginRegisterMVCEF.Context.cs</LastGenOutput>
-      <DependentUpon>LoginRegisterMVCEF.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\LoginRegisterMVCEF.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LoginRegisterMVCEF.edmx</DependentUpon>
-      <LastGenOutput>LoginRegisterMVCEF.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -181,41 +171,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\LoginRegisterMVCEF.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LoginRegisterMVCEF.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LoginRegisterMVCEF.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LoginRegisterMVCEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LoginRegisterMVCEF.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LoginRegisterMVCEF.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\PaymentModel.cs" />
-    <Compile Include="Models\RegisterUser.cs">
-      <DependentUpon>LoginRegisterMVCEF.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\OperationModel.cs" />
     <Compile Include="Models\UserBalanceModel.cs" />
-    <Compile Include="Models\ResetPasswordModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\Register.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <EntityDeploy Include="Models\LoginRegisterMVCEF.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LoginRegisterMVCEF.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\LoginRegisterMVCEF.edmx.diagram">
-      <DependentUpon>LoginRegisterMVCEF.edmx</DependentUpon>
-    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -224,8 +188,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -233,9 +195,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
