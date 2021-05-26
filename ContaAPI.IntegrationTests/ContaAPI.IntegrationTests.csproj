@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\User - Copy.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="Drivers\appsettings.json" />
   </ItemGroup>
 
